@@ -29,6 +29,10 @@
   position: relative;
 }
 
+.ngareWrapper, .ngareWrapper * {
+  box-sizing: border-box;
+}
+
 /* Clean background, no gradient blobs */
 .ngareWrapper::before, .ngareWrapper::after {
   content: '';
@@ -1081,9 +1085,9 @@
   .screen { padding: 1rem 0.75rem; }
   .globalNav { top: 0.75rem; left: 0.75rem; gap: 0.55rem; }
   .btnHome, .btnBackScreen { padding: 0.62rem; border-radius: 14px; }
-  .introContainer { padding: 2.1rem 1rem 1.4rem; border-radius: 18px; }
+  .introContainer { width: 100%; padding: 2.1rem 1rem 1.4rem; border-radius: 18px; }
   .introSubtitle { font-size: 1rem; margin-bottom: 1.4rem; }
-  .introFeatures { grid-template-columns: 1fr; gap: 0.6rem; margin-bottom: 1.4rem; width: 100%; }
+  .introFeatures { grid-template-columns: 1fr; gap: 0.6rem; margin-bottom: 1.4rem; width: 100%; padding: 0; }
   .featureTag { width: 100%; justify-content: center; font-size: 0.92rem; padding: 0.65rem 1rem; }
   .actionsRow { width: 100%; }
   .btnBase { width: 100%; padding: 0.9rem 1rem; font-size: 1rem; border-radius: 16px; }
@@ -1103,13 +1107,66 @@
   .destinyFooter { position: sticky; bottom: 0.7rem; width: 100%; z-index: 30; }
   .btnDestinyStart { width: 100%; border-radius: 14px; padding: 0.95rem 1rem; }
   .gameLayout { padding: 0.7rem; }
-  .gameHeader { position: static; border-radius: 16px; margin-bottom: 1rem; gap: 0.8rem; }
-  .headerLeft, .headerRight { gap: 0.55rem; width: 100%; justify-content: space-between; }
-  .headerRight { flex-wrap: wrap; }
-  .playerName { font-size: 0.98rem; }
-  .playerCareer { font-size: 0.8rem; }
-  .ageDisplay, .yearDisplay { padding: 0.45rem 0.9rem; border-radius: 12px; }
-  .ageValue, .yearValue { font-size: 1.2rem; }
+  .gameHeader {
+    position: static;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    padding: 0.85rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "player meta"
+      "actions actions";
+    gap: 0.8rem;
+    align-items: center;
+  }
+  .headerLeft {
+    grid-area: player;
+    min-width: 0;
+    gap: 0.55rem;
+    align-items: center;
+    width: auto;
+    justify-content: flex-start;
+  }
+  .headerCenter {
+    grid-area: meta;
+    width: auto;
+    justify-content: flex-end;
+    order: 0;
+    margin-top: 0;
+    gap: 0.45rem;
+  }
+  .headerRight {
+    grid-area: actions;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.45rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .headerRight::-webkit-scrollbar { display: none; }
+  .headerRight .btnIcon { flex: 0 0 auto; }
+  .playerInfo { min-width: 0; }
+  .playerName {
+    font-size: 0.98rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+  }
+  .playerCareer {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+  }
+  .ageDisplay, .yearDisplay { padding: 0.4rem 0.7rem; border-radius: 10px; min-width: 64px; }
+  .ageLabel, .yearLabel { font-size: 0.7rem; }
+  .ageValue, .yearValue { font-size: 1.1rem; }
   .statItem { padding: 0.85rem; }
   .eventCard { padding: 1.25rem 0.85rem; border-radius: 16px; }
   .eventTitle { font-size: 1.45rem; line-height: 1.28; }
@@ -1140,7 +1197,6 @@
   .endActions { gap: 0.65rem; flex-direction: column; }
   .statsPanel { grid-template-columns: 1fr; }
   .introTitle { font-size: 2.5rem; }
-  .headerCenter { width: 100%; justify-content: center; order: 3; margin-top: 1rem; }
   .destinyContainer { padding-top: 1.25rem; gap: 1.1rem; }
   .destinyCardsTrack { grid-template-columns: 1fr; }
 }
