@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ['latin', 'vietnamese'] })
 
 export const metadata = {
   title: 'Vạn Biến Cuộc Đời',
-  description: 'Viết nên câu chuyện của riêng bạn qua từng quyết định. Cuộc sống là một cuộc hành trình vạn biến.',
+  description: 'Mỗi lựa chọn mở ra một ngã rẽ mới. Tự tay định hình hành trình cuộc đời theo cách của bạn.',
 }
 
 export default function RootLayout({

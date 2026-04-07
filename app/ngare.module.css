@@ -1,19 +1,19 @@
 .ngareWrapper {
-  --bg-primary: #f8fafc;
+  --bg-primary: #f4f6f8;
   --bg-secondary: #ffffff;
-  --bg-card: rgba(255, 255, 255, 0.85);
-  --bg-glass: rgba(255, 255, 255, 0.4);
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
-  --accent-primary: #3b82f6;
-  --accent-secondary: #8b5cf6;
-  --accent-glow: rgba(59, 130, 246, 0.2);
-  --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  --border-subtle: rgba(15, 23, 42, 0.08);
-  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
-  --shadow-glow: 0 10px 30px rgba(59, 130, 246, 0.2);
+  --bg-card: rgba(255, 255, 255, 0.96);
+  --bg-glass: rgba(255, 255, 255, 0.9);
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --accent-primary: #2563eb;
+  --accent-secondary: #1d4ed8;
+  --accent-glow: rgba(37, 99, 235, 0.16);
+  --accent-gradient: #2563eb;
+  --border-subtle: rgba(17, 24, 39, 0.1);
+  --shadow-sm: 0 4px 14px rgba(17, 24, 39, 0.05);
+  --shadow-md: 0 14px 36px rgba(17, 24, 39, 0.09);
+  --shadow-glow: 0 10px 28px rgba(37, 99, 235, 0.2);
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
@@ -29,30 +29,18 @@
   position: relative;
 }
 
-/* Background gradient blobs to make the light UI feel premium */
+/* Clean background, no gradient blobs */
 .ngareWrapper::before, .ngareWrapper::after {
   content: '';
   position: fixed;
   border-radius: 50%;
   filter: blur(100px);
   z-index: 0;
-  opacity: 0.4;
+  opacity: 0;
   pointer-events: none;
 }
-.ngareWrapper::before {
-  top: -10%;
-  left: -10%;
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
-}
-.ngareWrapper::after {
-  bottom: -10%;
-  right: -10%;
-  width: 40vw;
-  height: 40vw;
-  background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
-}
+.ngareWrapper::before { display: none; }
+.ngareWrapper::after { display: none; }
 
 .particlesCanvas {
   position: fixed;
@@ -62,7 +50,7 @@
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.18;
 }
 
 .globalNav {
@@ -137,7 +125,7 @@
 }
 
 .btnPrimary {
-  background: var(--accent-gradient);
+  background: var(--accent-primary);
   color: white;
   position: relative;
   overflow: hidden;
@@ -145,7 +133,7 @@
 }
 .btnPrimary:hover:not(:disabled) {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(59, 130, 246, 0.35);
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.24);
 }
 .btnPrimary:disabled {
   opacity: 0.6;
@@ -218,6 +206,16 @@
   border: 1px solid var(--border-subtle);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+}
+.introContainer::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: rgba(37, 99, 235, 0.04);
+  pointer-events: none;
 }
 .logoIcon {
   color: var(--accent-primary);
@@ -239,10 +237,8 @@
 }
 .introTitle .highlight {
   display: block;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent-primary);
+  -webkit-text-fill-color: currentColor;
 }
 .introSubtitle {
   font-size: 1.2rem;
@@ -300,6 +296,7 @@
   gap: 1.5rem;
   align-items: center;
   padding-top: 2.5rem;
+  padding-bottom: 1.2rem;
 }
 .destinyHeader {
   text-align: center;
@@ -313,10 +310,8 @@
   letter-spacing: -1px;
 }
 .destinyTitle .highlight {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent-primary);
+  -webkit-text-fill-color: currentColor;
 }
 .destinySubtitle {
   font-size: 1.1rem;
@@ -330,8 +325,8 @@
   margin-bottom: 2rem;
   padding: 0.45rem 1rem;
   border-radius: 999px;
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
   color: var(--accent-primary);
   font-size: 0.9rem;
   font-weight: 600;
@@ -423,6 +418,16 @@
   box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
+.destinyCard::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-primary);
+  opacity: 0.45;
+}
 .destinyCard:hover {
   transform: translateY(-4px);
   border-color: rgba(59, 130, 246, 0.3);
@@ -434,12 +439,13 @@
   box-shadow: 0 14px 34px rgba(59, 130, 246, 0.25);
   background: var(--bg-secondary);
 }
+.destinyCard.selected::after { opacity: 1; }
 
 .dcGlow {
   position: absolute;
   top: -50%; left: -50%;
   width: 200%; height: 200%;
-  background: radial-gradient(circle at 50% 0%, var(--accent-glow), transparent 60%);
+  background: rgba(37, 99, 235, 0.05);
   opacity: 0;
   transition: var(--transition);
   pointer-events: none;
@@ -462,7 +468,7 @@
 }
 .destinyCard.selected .dcIconWrapper {
   transform: scale(1.04);
-  background: var(--accent-gradient);
+  background: var(--accent-primary);
   color: white;
   border: none;
   box-shadow: 0 10px 24px rgba(59, 130, 246, 0.28);
@@ -545,7 +551,7 @@
 }
 
 .btnDestinyStart {
-  background: var(--text-muted);
+  background: #9ca3af;
   color: white;
   padding: 1.2rem 3rem;
   border-radius: 99px;
@@ -557,10 +563,11 @@
   border: none;
   cursor: not-allowed;
   transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-  opacity: 0.7;
+  opacity: 0.85;
+  border: 1px solid rgba(255,255,255,0.35);
 }
 .btnDestinyStart.ready {
-  background: var(--accent-gradient);
+  background: var(--accent-primary);
   cursor: pointer;
   opacity: 1;
   box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
@@ -710,6 +717,15 @@
   border: 1px solid var(--border-subtle);
   text-align: center;
   backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+}
+.eventCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(37, 99, 235, 0.04);
+  pointer-events: none;
 }
 .eventType {
   display: inline-block;
@@ -967,7 +983,7 @@
 .shopItemPrice { font-weight: 700; color: #f59e0b; background: rgba(245, 158, 11, 0.1); padding: 0.3rem 0.8rem; border-radius: 999px; font-size: 0.9rem; }
 .shopItemDesc { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1rem; }
 .btnBuy, .btnUse {
-  background: var(--accent-gradient);
+  background: var(--accent-primary);
   color: white;
   border: none;
   padding: 0.6rem 1.5rem;
@@ -977,7 +993,7 @@
   transition: var(--transition);
   font-size: 0.9rem;
 }
-.btnBuy:hover:not(:disabled), .btnUse:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+.btnBuy:hover:not(:disabled), .btnUse:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22); }
 .btnBuy:disabled, .btnUse:disabled { background: var(--bg-primary); color: var(--text-muted); border: 1px solid var(--border-subtle); cursor: not-allowed; }
 
 .emptyState { text-align: center; padding: 3rem; color: var(--text-muted); background: var(--bg-primary); border-radius: var(--radius-md); border: 1px dashed var(--border-subtle); }
@@ -1039,12 +1055,14 @@
 @keyframes floatUp { 0% { opacity: 0; transform: translate(-50%, -30%); } 20% { opacity: 1; transform: translate(-50%, -50%); } 80% { opacity: 1; transform: translate(-50%, -70%); } 100% { opacity: 0; transform: translate(-50%, -100%); } }
 
 /* END SCREEN */
-.endContainer { text-align: center; max-width: 800px; background: var(--bg-card); padding: 4rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); backdrop-filter: blur(16px); border: 1px solid var(--border-subtle); }
+.endContainer { text-align: center; max-width: 820px; background: var(--bg-card); padding: 4rem; border-radius: var(--radius-lg); box-shadow: 0 18px 48px rgba(15, 23, 42, 0.12); backdrop-filter: blur(16px); border: 1px solid var(--border-subtle); position: relative; overflow: hidden; }
+.endContainer::before { content: ''; position: absolute; inset: 0; background: rgba(37,99,235,0.03); pointer-events: none; }
 .endIcon { font-size: 5rem; display: block; margin-bottom: 1rem; }
 .endTitle { font-size: 2.8rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem; }
 .endSubtitle { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 3rem; }
 .endStats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
-.endStatCard { background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); display: flex; flex-direction: column; align-items: center; box-shadow: var(--shadow-sm); }
+.endStatCard { background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); display: flex; flex-direction: column; align-items: center; box-shadow: var(--shadow-sm); transition: all 0.2s ease; }
+.endStatCard:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(59,130,246,0.28); }
 .esIcon { font-size: 2rem; margin-bottom: 0.5rem; color: var(--accent-primary); }
 .esValue { font-size: 1.8rem; font-weight: 800; color: var(--text-primary); }
 .esLabel { font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 600; margin-top: 0.2rem; }
@@ -1060,12 +1078,69 @@
   .destinyCardsTrack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 600px) {
+  .screen { padding: 1rem 0.75rem; }
+  .globalNav { top: 0.75rem; left: 0.75rem; gap: 0.55rem; }
+  .btnHome, .btnBackScreen { padding: 0.62rem; border-radius: 14px; }
+  .introContainer { padding: 2.1rem 1rem 1.4rem; border-radius: 18px; }
+  .introSubtitle { font-size: 1rem; margin-bottom: 1.4rem; }
+  .introFeatures { grid-template-columns: 1fr; gap: 0.6rem; margin-bottom: 1.4rem; width: 100%; }
+  .featureTag { width: 100%; justify-content: center; font-size: 0.92rem; padding: 0.65rem 1rem; }
+  .actionsRow { width: 100%; }
+  .btnBase { width: 100%; padding: 0.9rem 1rem; font-size: 1rem; border-radius: 16px; }
+  .destinyHeader { width: 100%; padding: 0 0.25rem; }
+  .destinyTitle { font-size: 2rem; }
+  .destinySubtitle { font-size: 0.96rem; margin-bottom: 0.75rem; }
+  .destinyMeta { margin-bottom: 1.15rem; font-size: 0.82rem; }
+  .destinyInput { font-size: 1rem; padding: 0.92rem 1rem 0.92rem 2.8rem; }
+  .diIcon { left: 0.9rem; width: 18px; height: 18px; }
+  .destinyCard { min-height: 0; padding: 0.92rem 0.8rem; border-radius: 14px; }
+  .dcIconWrapper { width: 44px; height: 44px; border-radius: 10px; margin-bottom: 0.55rem; }
+  .dcName { font-size: 1rem; }
+  .dcDesc { font-size: 0.84rem; min-height: 0; }
+  .dcStats { grid-template-columns: 1fr 1fr; padding: 0.45rem; gap: 0.38rem; }
+  .dcStatBadge { font-size: 0.78rem; padding: 0.3rem 0.34rem; }
+  .dcStatBadge small { font-size: 0.62rem; }
+  .destinyFooter { position: sticky; bottom: 0.7rem; width: 100%; z-index: 30; }
+  .btnDestinyStart { width: 100%; border-radius: 14px; padding: 0.95rem 1rem; }
+  .gameLayout { padding: 0.7rem; }
+  .gameHeader { position: static; border-radius: 16px; margin-bottom: 1rem; gap: 0.8rem; }
+  .headerLeft, .headerRight { gap: 0.55rem; width: 100%; justify-content: space-between; }
+  .headerRight { flex-wrap: wrap; }
+  .playerName { font-size: 0.98rem; }
+  .playerCareer { font-size: 0.8rem; }
+  .ageDisplay, .yearDisplay { padding: 0.45rem 0.9rem; border-radius: 12px; }
+  .ageValue, .yearValue { font-size: 1.2rem; }
+  .statItem { padding: 0.85rem; }
+  .eventCard { padding: 1.25rem 0.85rem; border-radius: 16px; }
+  .eventTitle { font-size: 1.45rem; line-height: 1.28; }
+  .eventDesc { font-size: 0.95rem; line-height: 1.55; margin-bottom: 1.2rem; }
+  .choiceBtn { padding: 0.85rem 0.8rem; gap: 0.65rem; border-radius: 12px; }
+  .choiceIcon { min-width: 22px; }
+  .choiceText { font-size: 0.95rem; }
+  .timelinePanel { max-height: none; border-radius: 14px; padding: 1rem 0.8rem; }
+  .timelineTitle { font-size: 1.05rem; margin-bottom: 1rem; }
+  .modalOverlay { padding: 0.5rem; align-items: flex-end; }
+  .modalContent { max-width: 100%; border-radius: 16px 16px 0 0; padding: 1rem 0.9rem; max-height: 88vh; overflow-y: auto; }
+  .modalContent h3 { font-size: 1.25rem; margin-bottom: 0.55rem; }
+  .shopItem { padding: 0.8rem; gap: 0.8rem; border-radius: 12px; }
+  .shopItemIcon { width: 34px; display: flex; align-items: flex-start; justify-content: center; }
+  .shopItemName { font-size: 0.96rem; }
+  .shopItemPrice { font-size: 0.8rem; padding: 0.2rem 0.55rem; }
+  .shopItemDesc { font-size: 0.86rem; margin-bottom: 0.55rem; }
+  .btnBuy, .btnUse { width: 100%; border-radius: 10px; padding: 0.6rem 0.8rem; }
+  .toastContainer { width: calc(100% - 1rem); left: 0.5rem; transform: none; bottom: 0.75rem; }
+  .toast { border-radius: 12px; width: 100%; padding: 0.75rem 0.8rem; font-size: 0.9rem; }
+  .endContainer { padding: 1.4rem 0.9rem 1.1rem; border-radius: 16px; }
+  .endTitle { font-size: 1.75rem; line-height: 1.2; }
+  .endSubtitle { font-size: 0.98rem; margin-bottom: 1.2rem; }
+  .endStats { grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.2rem; }
+  .endStatCard { padding: 0.75rem 0.5rem; border-radius: 10px; }
+  .esValue { font-size: 1.35rem; }
+  .esLabel { font-size: 0.74rem; }
+  .endActions { gap: 0.65rem; flex-direction: column; }
   .statsPanel { grid-template-columns: 1fr; }
-  .endStats { grid-template-columns: 1fr 1fr; }
   .introTitle { font-size: 2.5rem; }
-  .gameHeader { flex-wrap: wrap; gap: 1rem; justify-content: center; padding: 1rem; }
   .headerCenter { width: 100%; justify-content: center; order: 3; margin-top: 1rem; }
   .destinyContainer { padding-top: 1.25rem; gap: 1.1rem; }
   .destinyCardsTrack { grid-template-columns: 1fr; }
-  .destinyFooter { position: static; }
 }

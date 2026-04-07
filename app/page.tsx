@@ -340,9 +340,9 @@ export default function NgaReCuocDoiPage() {
             {/* GLOBAL NAV */}
             {(currentScreen === 'intro' || currentScreen === 'create') && (
                 <div className={styles.globalNav}>
-                    <Link href="/" className={styles.btnHome} title="Về trang chủ">
+                    <button className={styles.btnHome} title="Về trang chủ" onClick={goToHomeScreen}>
                         <Home size={20} />
-                    </Link>
+                    </button>
                     {currentScreen === 'create' && (
                         <button className={styles.btnBackScreen} onClick={() => setCurrentScreen('intro')} title="Quay lại">
                             <ArrowLeft size={20} />
@@ -359,7 +359,7 @@ export default function NgaReCuocDoiPage() {
                             <span className={styles.logoIcon}><Shuffle size={64} strokeWidth={2.2} /></span>
                             <h1 className={styles.introTitle}>Vạn Biến<span className={styles.highlight}>Cuộc Đời</span></h1>
                         </div>
-                        <p className={styles.introSubtitle}>Viết nên câu chuyện của riêng bạn qua từng quyết định. Cuộc sống là một cuộc hành trình vạn biến.</p>
+                        <p className={styles.introSubtitle}>Mỗi lựa chọn mở ra một ngã rẽ mới. Tự tay định hình hành trình cuộc đời theo cách của bạn.</p>
                         
                         <div className={styles.introFeatures}>
                             <div className={styles.featureTag}><GraduationCap size={18}/> Tốt nghiệp đại học</div>
@@ -480,9 +480,9 @@ export default function NgaReCuocDoiPage() {
                     <div className={styles.gameLayout}>
                         <header className={styles.gameHeader}>
                             <div className={styles.headerLeft}>
-                                <Link href="/" className={`${styles.btnIcon} ${styles.btnIconHome}`}>
+                                <button className={`${styles.btnIcon} ${styles.btnIconHome}`} onClick={goToHomeScreen} title="Về trang chủ">
                                     <Home size={20} />
-                                </Link>
+                                </button>
                                 <div className={styles.playerInfo}>
                                     <span className={styles.playerName}>{gameState.name}</span>
                                     <span className={styles.playerCareer}>{gameState.careerEmoji} {gameState.currentLevel}</span>
